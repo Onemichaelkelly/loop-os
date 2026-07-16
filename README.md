@@ -18,11 +18,13 @@ Five rules, learned the hard way:
 
 ```
 loop-os/
+├── GETTING-STARTED.md   # Start here — the guided, prompt-by-prompt build path
 ├── CLAUDE.md            # The operating instructions template — your AI's job description
 ├── templates/
 │   ├── loops.md         # The one shared file: THE 3, open loops, waiting-for, backlog
 │   └── MEMORY.md        # Index file for the typed memory system
 ├── skills/
+│   ├── setup/           # First run — interviews you and builds your system files
 │   ├── start/           # Morning briefing — THE 3, overdue waiting-fors, one entry point
 │   ├── sync/            # Mid-session checkpoint — capture sweep, memory updates
 │   ├── wrap/            # Session close — wins first, sweep, standing, the one thing
@@ -33,17 +35,18 @@ loop-os/
     └── memory-model.md  # Typed memory: user / feedback / project / reference
 ```
 
-## Quickstart
+## Quickstart — the system builds itself
+
+You don't fill these files in by hand. The system interviews you into existence — see **[GETTING-STARTED.md](GETTING-STARTED.md)** for the full guided path (six stages, ~15 minutes, one question at a time).
 
 **With Claude Code** (the full experience):
 
-1. Clone this repo.
-2. Copy `CLAUDE.md` to your working directory and fill in the bracketed sections — who you are, your lanes, your hard rules.
-3. Copy `templates/loops.md` next to it.
-4. Copy the `skills/` folders into `.claude/skills/` in that directory.
-5. Open Claude Code there and type `/start`.
+1. Clone this repo and open the folder in Claude Code.
+2. Copy the `skills/` folders into `.claude/skills/` in that directory.
+3. Type `/setup` — it interviews you, fills in `CLAUDE.md`, builds your `loops.md` and starter memory, and tells you the one habit to keep.
+4. Next morning: `/start`.
 
-**Without Claude Code** (plain chat): every mechanic here also works as a copy-paste prompt — see `docs/mechanics.md`, which includes the portable version of each one.
+**Without Claude Code** (any AI chat): run the copy-paste stages in [GETTING-STARTED.md](GETTING-STARTED.md) in order — same interview, same files, no install. Every daily mechanic also has a portable prompt version in `docs/mechanics.md`.
 
 ## Status
 
