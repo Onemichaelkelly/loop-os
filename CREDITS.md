@@ -46,6 +46,11 @@ half of this system owes it.
 **[`anthropics/knowledge-work-plugins`](https://github.com/anthropics/knowledge-work-plugins)**.
 The skill folder convention used in `skills/`.
 
+**Alyssa**, in the ChasingGnosis Discord.
+The guided prompt path in `GETTING-STARTED.md` started from prompts she shared. I do
+not have a public link for them. If you are reading this and want one here, send it and
+it goes in.
+
 **Andrej Karpathy's LLM wiki**, gist published early April 2026.
 Markdown plus a model as a personal wiki. Framing-level influence, no code. It made a
 public category out of something a lot of people were quietly building.
