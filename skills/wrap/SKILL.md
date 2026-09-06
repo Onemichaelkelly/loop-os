@@ -1,9 +1,28 @@
 ---
 name: wrap
-description: Session close. Wins first, capture sweep, update the Last session block in loops.md, bump aging counters, name the ONE thing for next time. Use when the user says "/wrap", "let's wrap", or is ending a work session.
+description: Session close. Wins first, capture sweep, update the Last session block in loops.md, bump aging counters, name the ONE thing for next time. Use when the user says "/wrap", "/wrap --mini", "let's wrap", "I'm heading out", "save where we are", or is ending a work session. Runs full or --mini.
 ---
 
 # /wrap — close the session
+
+Two weights. Pick by how much time there is, not by how important the session was.
+
+## /wrap --mini (about sixty seconds)
+
+For the session you are walking away from. A ringing phone, someone at the door, the
+end of a focus window. This exists because the full wrap is heavy enough to skip, and
+a skipped wrap loses the whole session.
+
+1. Write three lines into the **Last session** block of `loops.md`: wins, standing, next.
+2. Capture anything said in passing that has not been written down yet.
+3. Stop. No counters, no memory pass, no reflection.
+
+Output is one line: `Staged. Next: <the next action>.`
+
+Counters get bumped at the next full wrap. A mini wrap never leaves the day unwritten,
+which is the only job that matters when you are already halfway out the door.
+
+## /wrap (full)
 
 ## Steps
 

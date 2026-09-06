@@ -1,6 +1,13 @@
 # The Memory Model
 
-Loop OS memory is a folder of small markdown files plus one index. No database, no embeddings — just files an AI reads on demand and a human can audit in a text editor.
+Loop OS memory is a folder of small markdown files plus one index. No database, no
+embeddings — just files an AI reads on demand and a human can audit in a text editor.
+
+**Where it lives.** In Claude Code, memory is read from a folder keyed to your working
+directory: `~/.claude/projects/<directory-slug>/memory/`. Different directory, different
+folder. If you work from two places, the same fact has to exist in both or it quietly
+becomes two versions of itself. In any other AI chat, `memory/` inside this repo works
+fine — you paste the index in yourself.
 
 ## Structure
 
@@ -18,19 +25,37 @@ memory/
 One line per memory file, under 150 characters, written as a hook: enough for the AI to decide whether the file is relevant to the current conversation. The index is loaded at session start; individual files are pulled only when relevant. This keeps context cheap and recall targeted.
 
 ```markdown
-- [My Profile](user_profile.md) — role, working style, what shuts me down, what gets me moving
-- [Communication Rules](feedback_communication.md) — corrections I've given: no walls of text, one question at a time
+user_profile — role, working style, what shuts me down, what gets me moving
+feedback_communication — corrections given: no walls of text, one question at a time
 ```
+
+Write the line as `stem — hook`, not as a markdown link. Links cost characters that
+buy nothing, and the stem is what the AI needs to open the file.
+
+### When the index gets long
+
+Past roughly a hundred files, one index stops being cheap. Split it:
+
+- **`MEMORY.md`** stays hot: standing rules (`user_*`, `feedback_*`) plus whatever
+  fired recently. This is what loads every session.
+- **`MEMORY-full.md`** lists everything, and the AI reads it before ever saying "I
+  have no memory of that." The hot index is deliberately incomplete, so it has to be
+  told that.
+
+Files that have not come up in months move to `archive/`, out of both indexes and
+restorable any time.
 
 ## Each memory file
 
-Frontmatter declares what it is; the body is the fact.
+Frontmatter declares what it is; the body is the fact. The `name` matches the
+filename, and `type` sits under `metadata`, which is where Claude Code looks for it.
 
 ```markdown
 ---
-name: communication-rules
+name: feedback_communication
 description: Corrections given on how to communicate — one question at a time, no guilt framing
-type: feedback
+metadata:
+  type: feedback
 ---
 
 One question per response, never bundled. Lead with the most important thing.

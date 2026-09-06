@@ -18,22 +18,43 @@ Five rules, learned the hard way:
 
 ```
 loop-os/
-├── GETTING-STARTED.md   # Start here — the guided, prompt-by-prompt build path
-├── CLAUDE.md            # The operating instructions template — your AI's job description
+├── GETTING-STARTED.md   # the guided, prompt-by-prompt build path
+├── CLAUDE.md            # the operating instructions template — your AI's job description
+├── install/
+│   └── setup.sh         # the same setup, as a script, if you'd rather not talk it through
 ├── templates/
-│   ├── loops.md         # The one shared file: THE 3, open loops, waiting-for, backlog
-│   └── MEMORY.md        # Index file for the typed memory system
+│   ├── loops.md         # the one shared file: THE 3, open loops, waiting-for, backlog
+│   ├── MEMORY.md        # index file for the typed memory system
+│   └── memory-file.md   # what a single memory looks like
+├── examples/            # all of the above, filled in by someone real-shaped
+│   ├── CLAUDE.example.md
+│   ├── loops.example.md
+│   ├── MEMORY.example.md
+│   └── memory/          # ten memories showing the range
 ├── skills/
-│   ├── setup/           # First run — interviews you and builds your system files
-│   ├── start/           # Morning briefing — THE 3, overdue waiting-fors, one entry point
-│   ├── sync/            # Mid-session checkpoint — capture sweep, memory updates
-│   ├── wrap/            # Session close — wins first, sweep, standing, the one thing
-│   ├── checkin/         # The loop check-in — one question about your current commitment
-│   └── stuck/           # Do / Shrink / Park / Kill — for anything that won't move
+│   ├── setup/           # first run — interviews you and builds your system files
+│   ├── start/           # morning briefing — THE 3, overdue waiting-fors, one entry point
+│   ├── sync/            # mid-session checkpoint — capture sweep, memory updates
+│   ├── wrap/            # session close — full, or --mini when you're already leaving
+│   ├── checkin/         # the loop check-in — one question about your current commitment
+│   ├── stuck/           # Do / Shrink / Park / Kill — for anything that won't move
+│   └── lesson/          # turns a correction into a permanent file, so it never repeats
 └── docs/
-    ├── mechanics.md     # The load-bearing mechanics, explained
-    └── memory-model.md  # Typed memory: user / feedback / project / reference
+    ├── mechanics.md     # the load-bearing mechanics, explained
+    ├── memory-model.md  # typed memory: user / feedback / project / reference
+    ├── skill-anatomy.md # how a skill fires, and why yours won't
+    └── build-next.md    # what was deliberately left out, and when to add it
 ```
+
+## The examples are the manual
+
+Every template ships next to the same file as **Dev Okafor** filled it in. Dev is
+invented: mobile bike repair, two vans, one part-time mechanic, $2,400 in uninvoiced
+work, and a second van half-built since August.
+
+A blank template does not tell you how specific to get, and specific is the whole
+difference between a system that works and a folder of well-meaning notes. Start at
+[`examples/`](examples/) and compare.
 
 ## Quickstart — the system builds itself
 
@@ -46,7 +67,25 @@ You don't fill these files in by hand. The system interviews you into existence 
 3. Type `/setup` — it interviews you, fills in `CLAUDE.md`, builds your `loops.md` and starter memory, and tells you the one habit to keep.
 4. Next morning: `/start`.
 
+**In a hurry** — same six questions, no conversation:
+
+```bash
+./install/setup.sh
+```
+
+It writes `CLAUDE.md`, `loops.md`, a memory folder with an index, and all seven
+skills. It never overwrites anything without asking first.
+
 **Without Claude Code** (any AI chat): run the copy-paste stages in [GETTING-STARTED.md](GETTING-STARTED.md) in order — same interview, same files, no install. Every daily mechanic also has a portable prompt version in `docs/mechanics.md`.
+
+## The one habit
+
+Everything here is scaffolding around a single loop: the first time your AI gets
+something wrong, say so, then type `/lesson`. That turns the correction into a file
+with the reason attached, and the same mistake never costs you a second correction.
+
+A system nobody corrects is just a template. A system corrected twice a week gets
+uncannily good by month two.
 
 ## Status
 
