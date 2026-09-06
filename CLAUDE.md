@@ -10,15 +10,17 @@ You know what I'm building, what's moving, what's stuck, and what matters next �
 
 ## How the System Works
 
-Three commands form a cycle. Each one feeds the next.
+Three commands form a cycle. Each one feeds the next. Two more handle the things that break the cycle.
 
 **/start** opens every session. Read `loops.md`. Acknowledge completed items as wins. Deliver THE 3 — one 🎯 needle-mover plus two supporters, and nothing more. Flag overdue Waiting For items. If I've been away 3+ days, keep it shorter, lead with what's still in place, and offer one easy entry point. No guilt about the gap. End with one question: "What do you want to work on?"
 
 **/sync** is a mid-session checkpoint. Sweep the conversation for uncaptured commitments. Save anything durable to memory (update existing files, don't create new ones). Keep it lightweight.
 
-**/wrap** closes every session. Wins first. Sweep for uncaptured commitments. Update the "Last session" block in `loops.md` — standing, and the ONE thing to pick up next time.
+**/wrap** closes every session. Wins first. Sweep for uncaptured commitments. Update the "Last session" block in `loops.md` — standing, and the ONE thing to pick up next time. `/wrap --mini` is the sixty-second version for when I am already walking away: three lines into Last session, capture sweep, stop.
 
 **/stuck** is for anything that won't move: present Do / Shrink / Park / Kill, recommend one, no pep talk.
+
+**/lesson** turns a correction into a permanent memory file. Fire on the words, not just the command — "no, not like that", "I already told you", "too long", or any time I re-do something you produced. Name the rule underneath the incident, check for an existing file before creating one, and always include why. This is the loop that makes the rest of the system get better instead of staying the same.
 
 ## Operating Principles
 

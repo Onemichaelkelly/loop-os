@@ -1,11 +1,14 @@
 # Getting Started — the system builds itself
 
-You don't fill out these files by hand. You run a short series of prompts, answer questions one at a time, and the AI builds your system with you. Fifteen minutes, six stages, and stage 4 is you already using it.
+You don't fill out these files by hand. You run a short series of prompts, answer questions one at a time, and the AI builds your system with you. Fifteen minutes, seven stages, and stage 4 is you already using it.
 
 **Two paths to the same place:**
 
 - **Claude Code** (recommended): clone this repo, open the folder in Claude Code, type `/setup`, answer the questions. The setup skill runs stages 1–3 for you and you can skip straight to stage 4 below.
-- **Any AI chat** (Claude.ai, etc.): create a Project, upload `CLAUDE.md`, `templates/loops.md`, `templates/MEMORY.md`, and `docs/mechanics.md` to it, then run the stages below in order by copy-pasting each prompt.
+- **Any AI chat** (Claude.ai, etc.): create a Project, upload `CLAUDE.md`, `templates/loops.md`, `templates/MEMORY.md`, `templates/memory-file.md`, and `docs/mechanics.md` to it, then run the stages below in order by copy-pasting each prompt.
+- **In a hurry**: run `./install/setup.sh`. Same six questions, no conversation, writes every file for you.
+
+**Stuck on how specific to be?** Every file here has a filled-in version in [`examples/`](examples/), written by an invented mobile bike repair operator named Dev Okafor. When a prompt below asks you something and your answer feels too vague, open his version of that file. Vague answers produce a system that says nothing useful back.
 
 Do the stages **in order** — each one produces a file the next one needs. Don't do more than one stage per sitting if that's what it takes. A half-built system that you actually finish beats a whole one abandoned at stage 2.
 
@@ -36,6 +39,8 @@ then give it to me as one clean copy-paste block.
 
 Save the result as `CLAUDE.md`, replacing the template. **Checkpoint: no `[brackets]` left in the file.**
 
+Compare against [`examples/CLAUDE.example.md`](examples/CLAUDE.example.md). Dev's hard rules name a specific incident and a specific dollar amount. If yours read like general good advice, they will not change a single answer the AI gives you.
+
 ---
 
 ## Stage 2 — Seed your loops file
@@ -64,6 +69,8 @@ Then give me the complete loops.md as one clean copy-paste block.
 
 Save it as `loops.md` next to CLAUDE.md. **Checkpoint: THE 3 has exactly three items and you agree with them.**
 
+[`examples/loops.example.md`](examples/loops.example.md) shows what one looks like a few weeks in, counters and all.
+
 ---
 
 ## Stage 3 — Start your memory
@@ -74,15 +81,18 @@ Paste this:
 
 ```
 Create my starter memory from the MEMORY.md template:
-1. A user_profile.md file (type: user) holding what you learned about me
-   in the interview — identity, working style, communication rules.
-   Frontmatter: name, description, type.
-2. The MEMORY.md index with one line pointing at it.
+1. A user_profile.md file holding what you learned about me in the
+   interview — identity, working style, communication rules.
+   Frontmatter: name, description, and metadata.type = user.
+2. The MEMORY.md index with one line pointing at it, written as
+   "user_profile — <hook>". No markdown links, under 150 characters.
 Give me both as copy-paste blocks and tell me the folder structure to save
 them in.
 ```
 
 Save into `memory/`. **Checkpoint: two files exist and the index line describes you accurately.**
+
+In Claude Code, memory is read from `~/.claude/projects/<directory-slug>/memory/`, keyed to the working directory you launch from. Anywhere else, `memory/` in this repo is fine. Ten worked examples live in [`examples/memory/`](examples/memory/).
 
 ---
 
@@ -125,7 +135,34 @@ Give me the updated loops.md as one clean copy-paste block.
 
 ---
 
-## Stage 6 — Make it stick
+## Stage 6 — Your first correction (the one that compounds)
+
+*Produces: a memory file that makes the same mistake impossible twice.*
+
+The first time the AI gets something wrong — too long, wrong tone, wrong assumption, a fact it invented — do not just re-ask. Correct it, then paste this (Claude Code: `/lesson`):
+
+```
+That was wrong, and I don't want to correct it twice. Turn it into a
+permanent memory file:
+1. Name the RULE underneath what just happened, not the incident.
+   "Too long" is not a rule. "Default to four sentences" is.
+2. Check my existing memory first — if a file already covers this, update
+   that one instead of making a near-duplicate.
+3. Write it as feedback_<slug>.md with frontmatter (name, description,
+   metadata.type = feedback), then the rule, then **Why:** what actually
+   went wrong, then **How to apply:** what to do differently, concrete
+   enough that I could check it.
+4. Give me the index line for MEMORY.md.
+Then confirm in one line and drop it. No apology, no restarting the task.
+```
+
+**Checkpoint: the file has a Why.** A rule with no reason gets deleted in four months by someone who does not remember the incident, and that someone is you.
+
+This stage is the whole system. Stages 1 through 5 are scaffolding around it. A setup nobody corrects stays exactly as good as the day it was built; one corrected twice a week gets uncanny by month two. See [`examples/memory/feedback_no_price_sight_unseen.md`](examples/memory/feedback_no_price_sight_unseen.md) for the shape.
+
+---
+
+## Stage 7 — Make it stick
 
 You're operational. The whole habit is now two moments: **start when you sit down, wrap when you stand up.** Run just that loop for a week before adding anything.
 
@@ -137,5 +174,8 @@ Then add pieces only when a specific pain shows up:
 | you want a midday nudge on your 🎯 | the **/checkin** prompt (`skills/checkin/SKILL.md` — one question, one loop) |
 | you come back after days away and dread the pile | the **no-guilt reentry** prompt (`docs/mechanics.md`, mechanic #10) |
 | you notice the same week drifting with no anchor | the **weekly needle** prompt (`docs/mechanics.md`, mechanic #9) |
+| you walk away mid-session and lose where you were | **`/wrap --mini`** — sixty seconds, writes the three lines, nothing else |
+| a skill you wrote never seems to trigger | [`docs/skill-anatomy.md`](docs/skill-anatomy.md) — it is almost always the description |
+| you want to add more and don't know what | [`docs/build-next.md`](docs/build-next.md) — what was left out on purpose |
 
 One rule above all, borrowed from hard experience: when the system stops fitting, **shrink it — don't abandon it.** A start-and-wrap-only week is still the system working.
